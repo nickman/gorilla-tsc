@@ -72,15 +72,18 @@ public class LongArrayOutput implements BitOutput {
 
     protected void flipWord() {
         flipWordWithoutExpandCheck();
-        if(capacityLeft() <= 2) { // We want to have always at least 2 longs available
-            expandAllocation();
-        }
+//        if(capacityLeft() <= 2) { // We want to have always at least 2 longs available
+//            expandAllocation();
+//        }
     }
 
     protected void flipWordWithoutExpandCheck() {
         longArray[position] = lB;
         ++position;
         resetInternalWord();
+        if(capacityLeft() <= 2) { // We want to have always at least 2 longs available
+            expandAllocation();
+        }
     }
 
     private void resetInternalWord() {
